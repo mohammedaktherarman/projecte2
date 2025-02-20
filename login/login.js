@@ -1,3 +1,7 @@
+document.querySelector('.logo-container').addEventListener('click', function() {
+    window.location.href = '/pagina_inicio/inicio.html';
+});
+
 const users = [
     { username: 'admin', password: '1234', role: 'admin' },
     { username: 'professor', password: '1234', role: 'professor' },

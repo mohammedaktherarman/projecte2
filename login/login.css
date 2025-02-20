@@ -7,28 +7,47 @@ body {
 }
 
 header {
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    gap: 10px; 
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+}
 
 header img {
-    height: 50px; 
-    width: auto; 
+    height: 50px;
+    width: auto;
 }
 
 header h1 {
-    margin: 0; 
-    font-size: 24px; 
+    margin: 0;
+    font-size: 24px;
 }
 
-header, .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+header .login-btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+header .login-btn:hover {
+    background-color: #0056b3;
+}
+
+header .login-btn:active {
+    transform: scale(0.98);
 }
 
 h2 {
@@ -38,17 +57,24 @@ h2 {
     font-size: 2em;
 }
 
+.container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-width: 450px;
+    max-width: 500px;
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
+    width: 100%;
 }
 
 label {
@@ -123,21 +149,18 @@ a {
     text-decoration: none;
 }
 
-/* Estilo para el contenedor del selector */
 .selector-group {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-/* Estilo para la etiqueta */
 .selector-group label {
     font-size: 16px;
     font-weight: 600;
     color: #555;
 }
 
-/* Estilo para el select */
 #user-type {
     padding: 12px;
     font-size: 16px;

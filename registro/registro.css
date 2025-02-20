@@ -7,24 +7,28 @@ body {
 }
 
 header {
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    gap: 10px; 
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 header img {
-    height: 50px; 
-    width: auto; 
+    height: 50px;
+    width: auto;
 }
 
 header h1 {
-    margin: 0; 
-    font-size: 24px; 
+    margin: 0;
+    font-size: 24px;
 }
 
-header, .container {
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -103,4 +107,21 @@ button:active {
     border: 1px solid #ccc;
     background-color: #fff;
     width: 100%;
+}
+
+.login-btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+.login-btn:active {
+    transform: scale(0.98);
 }
