@@ -25,7 +25,7 @@ def create_influencer(influencer):
     """
     cursor.execute(query, (
         influencer.nombre, influencer.email, influencer.password, influencer.telefono, 
-        influencer.redes_sociales, influencer.descripcion, influencer.ubicacion, influencer.categoria
+        influencer.redes_sociales, influencer.descripcion, influencer.ubicacion, influencer.industria_sector
     ))
     conn.commit()
     conn.close()
@@ -40,7 +40,7 @@ def update_influencer(id, influencer):
     """
     cursor.execute(query, (
         influencer.nombre, influencer.email, influencer.password, influencer.telefono, 
-        influencer.redes_sociales, influencer.descripcion, influencer.ubicacion, influencer.categoria, id
+        influencer.redes_sociales, influencer.descripcion, influencer.ubicacion, influencer.industria_sector, id
     ))
     conn.commit()
     conn.close()
@@ -51,7 +51,6 @@ def delete_influencer(id):
     cursor.execute("DELETE FROM influencer WHERE id_influencer = %s", (id,))
     conn.commit()
     conn.close()
-
 
 def get_empresas():
     conn = db_client() 
@@ -78,7 +77,7 @@ def create_empresa(empresa):
     """
     cursor.execute(query, (
         empresa.nombre, empresa.email, empresa.telefono, empresa.password, 
-        empresa.web_empresa, empresa.descripcion, empresa.ubicacion, empresa.sector
+        empresa.web_empresa, empresa.descripcion, empresa.ubicacion, empresa.industria_sector
     ))
     conn.commit()
     conn.close()
@@ -93,7 +92,7 @@ def update_empresa(id, empresa):
     """
     cursor.execute(query, (
         empresa.nombre, empresa.email, empresa.telefono, empresa.password, 
-        empresa.web_empresa, empresa.descripcion, empresa.ubicacion, empresa.sector, id
+        empresa.web_empresa, empresa.descripcion, empresa.ubicacion, empresa.industria_sector, id
     ))
     conn.commit()
     conn.close()
@@ -104,7 +103,6 @@ def delete_empresa(id):
     cursor.execute("DELETE FROM empresa WHERE id_empresa = %s", (id,))
     conn.commit()
     conn.close()
-
 
 def get_ofertas():
     conn = db_client() 
@@ -126,12 +124,12 @@ def create_oferta(oferta):
     conn = db_client() 
     cursor = conn.cursor()
     query = """
-        INSERT INTO oferta (id_empresa, id_influencer, titol, descripcio, pressupost, requisits, data_inici, data_finalitzacio)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO oferta (id_empresa, id_influencer, titol, descripcio, pressupost, requisits)
+        VALUES (%s, %s, %s, %s, %s, %s)
     """
     cursor.execute(query, (
         oferta.id_empresa, oferta.id_influencer, oferta.titol, oferta.descripcio,
-        oferta.pressupost, oferta.requisits, oferta.data_inici, oferta.data_finalitzacio
+        oferta.pressupost, oferta.requisits
     ))
     conn.commit()
     conn.close()
@@ -141,12 +139,12 @@ def update_oferta(id, oferta):
     cursor = conn.cursor()
     query = """
         UPDATE oferta
-        SET id_empresa = %s, id_influencer = %s, titol = %s, descripcio = %s, pressupost = %s, requisits = %s, data_inici = %s, data_finalitzacio = %s
+        SET id_empresa = %s, id_influencer = %s, titol = %s, descripcio = %s, pressupost = %s, requisits = %s
         WHERE id_oferta = %s
     """
     cursor.execute(query, (
         oferta.id_empresa, oferta.id_influencer, oferta.titol, oferta.descripcio,
-        oferta.pressupost, oferta.requisits, oferta.data_inici, oferta.data_finalitzacio, id
+        oferta.pressupost, oferta.requisits, id
     ))
     conn.commit()
     conn.close()
