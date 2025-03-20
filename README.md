@@ -1,1 +1,2 @@
-# Projecte 2 Fluence
+# Projecte 2 
+![alt text](logo.png)
