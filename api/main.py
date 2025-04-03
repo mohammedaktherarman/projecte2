@@ -1,10 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Optional
+from fastapi.middleware.cors import CORSMiddleware
 from db_fluence import (
     get_influencers, get_influencer, create_influencer, update_influencer, delete_influencer,
-    get_empresas, get_empresa, create_empresa, update_empresa, delete_empresa,
-    get_ofertas, get_oferta, create_oferta, update_oferta, delete_oferta
+    get_empresas, get_empresa, create_empresa, update_empresa, delete_empresa,verify_user,
+    get_ofertas, get_oferta, create_oferta, update_oferta, delete_oferta,
 )
 
 class Influencer(BaseModel):
@@ -14,7 +15,7 @@ class Influencer(BaseModel):
     password: Optional[str] = None
     telefono: Optional[str] = None
     redes_sociales: Optional[str] = None  
-    descripcion: Optional[str] = None
+    descripcion: Optional[str] =  None
     ubicacion: Optional[str] = None 
     industria_sector: Optional[str] = None  
 
@@ -40,6 +41,14 @@ class Oferta(BaseModel):
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5500", "http://127.0.0.1:5500"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/influencers/")
 def read_influencers():
     try:
@@ -55,12 +64,14 @@ def read_influencer(id: int):
         return {"status": "error", "missatge": str(e)}
 
 @app.post("/influencer/")
-def add_influencer(influencer: Influencer):  
+def add_influencer(influencer: Influencer):
     try:
         create_influencer(influencer)
-        return {"status": "ok", "missatge": "Influencer creat correctament."}
+        return {"status": "ok", "message": "Influencer creado correctamente."}
     except Exception as e:
-        return {"status": "error", "missatge": str(e)}
+        if 'Duplicate entry' in str(e):
+            raise HTTPException(status_code=400, detail="El email ya está registrado")
+        return {"status": "error", "message": str(e)}
 
 @app.put("/influencer/{id}")
 def modify_influencer(id: int, influencer: Influencer): 
@@ -93,12 +104,15 @@ def read_empresa(id: int):
         return {"status": "error", "missatge": str(e)}
 
 @app.post("/empresa/")
-def add_empresa(empresa: Empresa):  
+def add_empresa(empresa: Empresa):
     try:
         create_empresa(empresa)
-        return {"status": "ok", "missatge": "Empresa creada correctament."}
+        return {"status": "ok", "message": "Empresa creada correctamente."}
     except Exception as e:
-        return {"status": "error", "missatge": str(e)}
+        # Si la base de datos lanza un error de duplicado
+        if 'Duplicate entry' in str(e):
+            raise HTTPException(status_code=400, detail="El email ya está registrado")
+        return {"status": "error", "message": str(e)}
 
 @app.put("/empresa/{id}")
 def modify_empresa(id: int, empresa: Empresa):  
@@ -153,3 +167,21 @@ def remove_oferta(id: int):
         return {"status": "ok", "missatge": "Oferta eliminada correctament."}
     except Exception as e:
         return {"status": "error", "missatge": str(e)}
+    
+class LoginData(BaseModel):
+    email: str
+    password: str
+
+@app.post("/empresa/login")
+def empresa_login(data: LoginData):
+    user = verify_user("empresa", data.email, data.password)
+    if not user:
+        raise HTTPException(status_code=401, detail="Credenciales incorrectas")
+    return {"status": "ok", "message": "Inicio de sesión exitoso", "user": user}
+
+@app.post("/influencer/login")
+def influencer_login(data: LoginData):
+    user = verify_user("influencer", data.email, data.password)
+    if not user:
+        raise HTTPException(status_code=401, detail="Credenciales incorrectas")
+    return {"status": "ok", "message": "Inicio de sesión exitoso", "user": user}

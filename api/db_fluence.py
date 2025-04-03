@@ -155,3 +155,14 @@ def delete_oferta(id):
     cursor.execute("DELETE FROM oferta WHERE id_oferta = %s", (id,))
     conn.commit()
     conn.close()
+
+
+def verify_user(table: str, email: str, password: str):
+    conn = db_client()
+    cursor = conn.cursor(dictionary=True)
+    query = f"SELECT * FROM {table} WHERE email = %s AND password = %s"
+    cursor.execute(query, (email, password))
+    user = cursor.fetchone()
+    conn.close()
+    return user
+
