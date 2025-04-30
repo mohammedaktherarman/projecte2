@@ -15,8 +15,7 @@ document.getElementById("login-btn").addEventListener("click", async function ()
 
         const result = await response.json();
         if (response.ok) {
-            alert("Inicio de sesión exitoso");
-            window.location.href = "/web/main/inicio.html"; 
+            window.location.href = "../main.html"; 
         } else {
             alert(result.missatge || "Credenciales incorrectas");
         }

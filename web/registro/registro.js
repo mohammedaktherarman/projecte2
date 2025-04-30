@@ -23,7 +23,6 @@ document.getElementById("register-btn").addEventListener("click", async function
 
         const result = await response.json();
         if (response.ok) {
-            alert("Registro exitoso");
             window.location.href = "/web/login/login.html";
         } else {
             alert(result.detail || "Error en el registro");
