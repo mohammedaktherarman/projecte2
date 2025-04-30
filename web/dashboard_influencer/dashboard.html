@@ -1,15 +1,114 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="dashboard.css">
+  <meta charset="UTF-8">
+  <title>Dashboard Influencer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header>
-        <a href="/web/main/inicio.html" class="logo-container">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3tPETqQ41FU4SZ2CBRVLjN0jCjMQ99Grdvg&s" alt="Logo">
-        </a>
-    </header>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Dashboard Influencer</h1>
+    <nav>
+      <button onclick="showSection('editar')" class="mr-4 text-blue-600">Editar perfil</button>
+      <button onclick="showSection('preview')" class="mr-4 text-blue-600">Vista previa</button>
+      <button class="text-red-600">Cerrar sesión</button>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="p-6">
+
+    <!-- Sección: Editar perfil -->
+    <section id="editar" class="bg-white p-6 rounded shadow">
+      <h2 class="text-xl font-semibold mb-4">Editar mi perfil</h2>
+      <form class="space-y-4">
+        <div>
+          <label class="block font-medium">Nombre</label>
+          <input type="text" class="w-full border p-2 rounded" placeholder="Tu nombre" />
+        </div>
+        <div>
+          <label class="block font-medium">Bio / Descripción</label>
+          <textarea class="w-full border p-2 rounded" rows="3" placeholder="Cuéntales a las marcas sobre ti..."></textarea>
+        </div>
+        <div>
+          <label class="block font-medium">Email de contacto</label>
+          <input type="email" class="w-full border p-2 rounded" placeholder="tucorreo@email.com" />
+        </div>
+        <div>
+          <label class="block font-medium">Categorías</label>
+          <input type="text" class="w-full border p-2 rounded" placeholder="Moda, Viajes, Fitness" />
+        </div>
+        <div>
+          <label class="block font-medium">Número de seguidores</label>
+          <input type="number" class="w-full border p-2 rounded" placeholder="Ej: 25000" />
+        </div>
+        <div>
+          <label class="block font-medium">Red social principal</label>
+          <input type="url" class="w-full border p-2 rounded" placeholder="https://instagram.com/tuusuario" />
+        </div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Guardar cambios</button>
+      </form>
+    </section>
+
+    <!-- Sección: Vista previa del perfil público -->
+    <section id="preview" class="hidden bg-white p-6 rounded shadow">
+      <h2 class="text-xl font-semibold mb-4">Vista previa de tu perfil</h2>
+      <div class="bg-white rounded shadow p-6">
+
+        <!-- Imagen y nombre -->
+        <div class="flex items-center space-x-4 mb-6">
+          <img src="https://via.placeholder.com/100" alt="Foto" class="rounded-full w-24 h-24">
+          <div>
+            <h2 class="text-2xl font-bold">Laura Martínez</h2>
+            <p class="text-sm text-gray-600">📍 Barcelona, España</p>
+          </div>
+        </div>
+
+        <!-- Categorías y seguidores -->
+        <div class="mb-4">
+          <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm mr-2">Moda</span>
+          <span class="inline-block bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm mr-2">Lifestyle</span>
+          <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Viajes</span>
+        </div>
+
+        <p class="mb-4 text-gray-700"><strong>Seguidores:</strong> 42,000</p>
+
+        <!-- Bio -->
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold mb-1">Sobre mí</h3>
+          <p>Soy Laura, creadora de contenido especializada en moda, lifestyle y viajes. Me apasiona colaborar con marcas auténticas y conectar con una audiencia que valora la creatividad y la honestidad.</p>
+        </div>
+
+        <!-- Redes sociales -->
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold mb-1">Redes sociales</h3>
+          <ul class="space-y-1">
+            <li><a href="https://instagram.com/lauramoda" target="_blank" class="text-blue-600 hover:underline">Instagram: @lauramoda</a></li>
+            <li><a href="https://tiktok.com/@lauramoda" target="_blank" class="text-pink-600 hover:underline">TikTok: @lauramoda</a></li>
+            <li><a href="https://youtube.com/lauramoda" target="_blank" class="text-red-600 hover:underline">YouTube: Laura Moda</a></li>
+          </ul>
+        </div>
+
+        <!-- Contacto -->
+        <div class="bg-gray-50 p-4 rounded">
+          <p class="text-sm">¿Te interesa colaborar con Laura?</p>
+          <p class="font-medium mt-1">📧 lauramartinez@correo.com</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function showSection(section) {
+      document.getElementById('editar').classList.add('hidden');
+      document.getElementById('preview').classList.add('hidden');
+      document.getElementById(section).classList.remove('hidden');
+    }
+  </script>
+
 </body>
 </html>
