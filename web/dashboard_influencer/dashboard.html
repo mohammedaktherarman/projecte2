@@ -14,109 +14,68 @@
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3tPETqQ41FU4SZ2CBRVLjN0jCjMQ99Grdvg&s" alt="Logo">
     </div>
     <nav class="header-right">
-      <a href="#" onclick="showSection('editar')">Editar perfil</a>
-      <a href="#" onclick="showSection('preview')">Vista previa</a>
-      <a href="#" style="color: red;">Cerrar sesión</a>
+      <a href="#" id="btn-editar">Editar perfil</a>
+      <a href="#" id="btn-vista-previa">Vista previa</a>
+      <a href="../login/login.html" style="color: red;">Cerrar sesión</a>
     </nav>
   </header>
   
-
   <!-- Main -->
-  <main class="p-6">
+  <main class="p-6 space-y-8">
+    <!-- Sección de edición -->
     <section id="editar" class="bg-white p-6 rounded shadow">
       <h2 class="text-xl font-semibold mb-4">Editar mi perfil</h2>
-      <form class="space-y-4">
+      <form id="edit-form" class="space-y-4">
+        <!-- (campos del formulario igual que antes) -->
         <div>
           <label class="block font-medium">Nombre</label>
-          <input type="text" class="w-full border p-2 rounded" placeholder="" />
+          <input type="text" id="nombre" class="w-full border p-2 rounded" />
         </div>
         <div>
           <label class="block font-medium">Sobre mi</label>
-          <textarea class="w-full border p-2 rounded" rows="3" placeholder="Cuéntales a las empresas sobre ti..."></textarea>
+          <textarea id="descripcion" class="w-full border p-2 rounded" rows="3"></textarea>
         </div>
         <div>
           <label class="block font-medium">Imagen</label>
-          <input type="text" class="w-full border p-2 rounded" placeholder="Pon el link de tu imagen. https://exemple/imagen.jpg" />
+          <input type="text" id="imagen" class="w-full border p-2 rounded" />
         </div>
         <div>
           <label class="block font-medium">Tu Email de contacto</label>
-          <input type="email" class="w-full border p-2 rounded" placeholder="tucorreo@email.com" />
+          <input type="email" id="email_contacto" class="w-full border p-2 rounded" />
         </div>
         <div>
           <label class="block font-medium">Telefono de contacto</label>
-          <input type="number" class="w-full border p-2 rounded" placeholder="" />
+          <input type="number" id="telefono" class="w-full border p-2 rounded" />
         </div>
         <div>
           <label class="block font-medium">Sector o Industria</label>
-          <input type="text" class="w-full border p-2 rounded" placeholder="Moda, Viajes, Fitness etc..." />
+          <input type="text" id="sector" class="w-full border p-2 rounded" />
         </div>
         <div>
           <label class="block font-medium">Redes sociales</label>
-          <input type="url" class="w-full border p-2 rounded" placeholder="https://instagram.com/usuario, https://www.youtube.com/usuario" />
+          <input type="url" id="redsocial" class="w-full border p-2 rounded" />
         </div>
         <div>
           <label class="block font-medium">Seguidores</label>
-          <input type="url" class="w-full border p-2 rounded" placeholder="Tu numero de seguidores" />
+          <input type="text" id="seguidores" class="w-full border p-2 rounded" />
         </div>
         <div>
           <label class="block font-medium">Ubicacion</label>
-          <input type="url" class="w-full border p-2 rounded" placeholder="Cataluña, Barcelona" />
+          <input type="text" id="ubicacion" class="w-full border p-2 rounded" />
         </div>
         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Guardar cambios</button>
       </form>
     </section>
 
-    <!-- Vista previa -->
+    <!-- Sección de vista previa (inicialmente oculta) -->
     <section id="preview" class="hidden bg-white p-6 rounded shadow">
-      <h2 class="text-xl font-semibold mb-4">La Vista que veran de tu perfil de tu perfil</h2>
-      <div class="bg-white rounded shadow p-6">
-
-        <!-- Imagen y nombre -->
-        <div class="flex items-center space-x-4 mb-6">
-          <img src="https://via.placeholder.com/100" alt="Foto" class="rounded-full w-24 h-24">
-          <div>
-            <h2 class="text-2xl font-bold">Laura Martínez</h2>
-            <p class="text-sm text-gray-600">📍 Barcelona, España</p>
-          </div>
-        </div>
-
-        <p class="mb-4 text-gray-700"><strong>Seguidores:</strong> 42,000</p>
-
-        <!-- Bio -->
-        <div class="mb-6">
-          <h3 class="text-lg font-semibold mb-1">Sobre mí</h3>
-          <p>Soy Laura, creadora de contenido especializada en moda, lifestyle y viajes. Me apasiona colaborar con marcas auténticas y conectar con una audiencia que valora la creatividad y la honestidad.</p>
-        </div>
-
-        <!-- Redes sociales -->
-        <div class="mb-6">
-          <h3 class="text-lg font-semibold mb-1">Redes sociales</h3>
-          <ul class="space-y-1">
-            <li><a href="https://instagram.com/lauramoda" target="_blank" class="text-blue-600 hover:underline">Instagram: @lauramoda</a></li>
-            <li><a href="https://tiktok.com/@lauramoda" target="_blank" class="text-pink-600 hover:underline">TikTok: @lauramoda</a></li>
-            <li><a href="https://youtube.com/lauramoda" target="_blank" class="text-red-600 hover:underline">YouTube: Laura Moda</a></li>
-          </ul>
-        </div>
-
-        <!-- Contacto -->
-        <div class="bg-gray-50 p-4 rounded">
-          <p class="text-sm">¿Te interesa colaborar?</p>
-          <p class="font-medium mt-1">📧 lauramartinez@correo.com</p>
-          <p class="font-medium mt-1">📞 634128279</p>
-        </div>
-
+      <h2 class="text-xl font-semibold mb-4">Vista previa de tu perfil</h2>
+      <div id="preview-content" class="bg-white rounded shadow p-6">
+        <!-- Aquí se cargará la vista previa dinámica -->
       </div>
     </section>
-
   </main>
 
-  <script>
-    function showSection(section) {
-      document.getElementById('editar').classList.add('hidden');
-      document.getElementById('preview').classList.add('hidden');
-      document.getElementById(section).classList.remove('hidden');
-    }
-  </script>
-
+  <script src="dashboard.js"></script>
 </body>
 </html>

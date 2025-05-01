@@ -10,7 +10,7 @@ from db import (
 
 class Influencer(BaseModel):
     id_influencer: Optional[int] = None
-    email: str
+    email: Optional[str] = None
     password: Optional[str] = None
     nombre: Optional[str] = None
     descripcion: Optional[str] = None
