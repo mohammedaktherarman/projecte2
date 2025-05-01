@@ -9,13 +9,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const endpoint = userType === "empresa" ? `/empresa/${userId}` : `/influencer/${userId}`;
 
-  // Al cargar la página, rellenamos el formulario con los datos
   fetch(`http://localhost:8000${endpoint}`)
     .then(response => response.json())
     .then(result => {
       if (result && result.data) {
-        fillForm(result.data);
-        loadPreview(result.data);
+        const mappedData = mapKeys(result.data);
+        fillForm(mappedData);
+        loadPreview(mappedData);
       } else {
         alert("No se encontraron datos del perfil.");
       }
@@ -25,16 +25,32 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Error al cargar los datos del perfil.");
     });
 
+  function mapKeys(data) {
+    return {
+      nombre: data.nombre || data.nom || "",
+      descripcion: data.descripcion || data.descripcio || "",
+      imagen: data.imagen || "",
+      email_contacto: data.email_contacto || "",
+      telefono: data.telefono || data.telefon || "",
+      sector: data.sector || "",
+      redsocial: data.redsocial || "",
+      seguidores: data.seguidores || "",
+      ubicacion: data.ubicacion || data.ubicacio || "",
+      web: data.web || data.web_empresa || "",
+      link: data.link || ""
+    };
+  }
+
   function fillForm(data) {
-    document.getElementById("nombre").value = data.nombre || "";
-    document.getElementById("descripcion").value = data.descripcion || "";
-    document.getElementById("imagen").value = data.imagen || "";
-    document.getElementById("email_contacto").value = data.email_contacto || "";
-    document.getElementById("telefono").value = data.telefono || "";
-    document.getElementById("sector").value = data.sector || "";
-    document.getElementById("redsocial").value = data.redsocial || "";
-    document.getElementById("seguidores").value = data.seguidores || "";
-    document.getElementById("ubicacion").value = data.ubicacion || "";
+    document.getElementById("nombre").value = data.nombre;
+    document.getElementById("descripcion").value = data.descripcion;
+    document.getElementById("imagen").value = data.imagen;
+    document.getElementById("email_contacto").value = data.email_contacto;
+    document.getElementById("telefono").value = data.telefono;
+    document.getElementById("sector").value = data.sector;
+    document.getElementById("redsocial").value = data.redsocial;
+    document.getElementById("seguidores").value = data.seguidores;
+    document.getElementById("ubicacion").value = data.ubicacion;
   }
 
   function loadPreview(data) {
@@ -42,14 +58,14 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="flex items-center space-x-4 mb-6">
         <img src="${data.imagen || 'https://via.placeholder.com/100'}" alt="Foto" class="rounded-full w-24 h-24">
         <div>
-          <h2 class="text-2xl font-bold">${data.nombre || ''}</h2>
-          <p class="text-sm text-gray-600">📍 ${data.ubicacion || ''}</p>
+          <h2 class="text-2xl font-bold">${data.nombre}</h2>
+          <p class="text-sm text-gray-600">📍 ${data.ubicacion}</p>
         </div>
       </div>
-      <p class="mb-4 text-gray-700"><strong>Seguidores:</strong> ${data.seguidores || ''}</p>
+      <p class="mb-4 text-gray-700"><strong>Seguidores:</strong> ${data.seguidores}</p>
       <div class="mb-6">
         <h3 class="text-lg font-semibold mb-1">Sobre mí</h3>
-        <p>${data.descripcion || ''}</p>
+        <p>${data.descripcion}</p>
       </div>
       <div class="mb-6">
         <h3 class="text-lg font-semibold mb-1">Redes sociales</h3>
@@ -59,25 +75,24 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
       <div class="bg-gray-50 p-4 rounded">
         <p class="text-sm">¿Te interesa colaborar?</p>
-        <p class="font-medium mt-1">📧 ${data.email_contacto || ''}</p>
-        <p class="font-medium mt-1">📞 ${data.telefono || ''}</p>
+        <p class="font-medium mt-1">📧 ${data.email_contacto}</p>
+        <p class="font-medium mt-1">📞 ${data.telefono}</p>
       </div>
     `;
     document.getElementById("preview-content").innerHTML = previewContent;
   }
 
-  // Alternar visibilidad
   document.getElementById("btn-vista-previa").addEventListener("click", function (e) {
     e.preventDefault();
     document.getElementById("editar").classList.add("hidden");
     document.getElementById("preview").classList.remove("hidden");
 
-    // Puedes recargar los datos aquí si quieres actualizar preview al hacer clic
     fetch(`http://localhost:8000${endpoint}`)
       .then(response => response.json())
       .then(result => {
         if (result && result.data) {
-          loadPreview(result.data);
+          const mappedData = mapKeys(result.data);
+          loadPreview(mappedData);
         }
       });
   });
@@ -118,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const result = await response.json();
 
       if (response.ok) {
-        alert("Perfil actualizado correctamente.");
+        alert("Perfil actualizado correctamente. Mira como queda en Vista previa");
         loadPreview(data);
       } else {
         alert(result.detail || "Error al actualizar el perfil.");

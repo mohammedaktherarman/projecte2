@@ -26,7 +26,6 @@ header img {
 header h1 {
     margin: 0;
     font-size: 24px;
-    
 }
 
 .container {
@@ -46,13 +45,14 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-width: 450px;
+    max-width: 500px; /* Cambiado a un tamaño más consistente entre los dos */
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
+    width: 100%;
 }
 
 label {
@@ -79,7 +79,6 @@ button {
     font-size: 16px;
     display: block;
     margin: 0 auto;
-    
 }
 
 button:hover {
@@ -88,6 +87,44 @@ button:hover {
 
 button:active {
     transform: scale(0.98);
+}
+
+.table-container {
+    margin-top: 40px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+td {
+    background-color: #fafafa;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+a {
+    text-decoration: none;
 }
 
 .selector-group {
