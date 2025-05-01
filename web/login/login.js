@@ -15,11 +15,20 @@ document.getElementById("login-btn").addEventListener("click", async function ()
 
         const result = await response.json();
         if (response.ok) {
-            window.location.href = "../main.html"; 
+            if (userType === "empresa") {
+                localStorage.setItem("userId", result.user.id_empresa);
+                localStorage.setItem("userType", "empresa");
+                window.location.href = "../dashboard_empresa/dashboard.html";
+            } else {
+                localStorage.setItem("userId", result.user.id_influencer);
+                localStorage.setItem("userType", "influencer");
+                window.location.href = "../dashboard_influencer/dashboard.html";
+            }
         } else {
-            alert(result.missatge || "Credenciales incorrectas");
+            alert(result.detail || result.missatge || "Credenciales incorrectas");
         }
     } catch (error) {
+        console.error("Error al conectar con el servidor:", error);
         alert("Error al conectar con el servidor");
     }
 });
