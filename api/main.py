@@ -24,14 +24,13 @@ class Influencer(BaseModel):
 
 class Empresa(BaseModel):
     id_empresa: Optional[int] = None
-    email: str
+    email: Optional[str] = None
     password: Optional[str] = None
     nombre: Optional[str] = None
     descripcion: Optional[str] = None
     email_contacto: Optional[str] = None
     web: Optional[str] = None
     ubicacion: Optional[str] = None
-    sector: Optional[str] = None
 
 app = FastAPI()
 

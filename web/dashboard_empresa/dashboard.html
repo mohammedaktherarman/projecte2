@@ -15,112 +15,50 @@
       </a>    
     </div>
     <nav class="header-right">
-      <a href="#" onclick="showSection('perfil')">Mi perfil</a>
+      <a href="#" onclick="showSection('perfil')">Perfil</a>
       <a href="#" onclick="showSection('buscar')">Buscar influencers</a>
+      <a href="#" onclick="showSection('buscar')">Guardados</a>
       <a href="#" style="color: red;">Cerrar sesión</a>
     </nav>
   </header>
-  
 
-  <!-- Main container -->
   <main class="p-6">
-    <!-- Sección: Perfil -->
     <section id="perfil" class="bg-white p-6 rounded shadow">
-      <h2 class="text-xl font-semibold mb-4">Editar perfil</h2>
-      <form class="space-y-4">
+      <h2 class="text-xl font-semibold mb-4">Editar Perfil</h2>
+      <form class="space-y-4" id="empresa-form">
         <div>
           <label class="block font-medium">Nombre de la empresa</label>
-          <input type="text" class="w-full border p-2 rounded" placeholder="Mi Empresa S.A." />
+          <input type="text" id="empresa-nombre" class="w-full border p-2 rounded" placeholder="" />
         </div>
         <div>
           <label class="block font-medium">Descripción</label>
-          <textarea class="w-full border p-2 rounded" rows="3" placeholder="¿Quiénes somos?"></textarea>
+          <textarea id="empresa-descripcion" class="w-full border p-2 rounded" rows="3" placeholder=""></textarea>
         </div>
         <div>
           <label class="block font-medium">Email de contacto</label>
-          <input type="email" class="w-full border p-2 rounded" placeholder="contacto@empresa.com" />
+          <input type="email" id="empresa-email" class="w-full border p-2 rounded" placeholder="" />
         </div>
         <div>
           <label class="block font-medium">País / Ciudad</label>
-          <input type="text" class="w-full border p-2 rounded" placeholder="Madrid, España" />
+          <input type="text" id="empresa-ubicacion" class="w-full border p-2 rounded" placeholder="" />
         </div>
         <div>
-          <label class="block font-medium">Categorías o sectores</label>
-          <input type="text" class="w-full border p-2 rounded" placeholder="Moda, Viajes, Tecnología" />
+          <label class="block font-medium">Web de la empresa</label>
+          <input type="url" id="empresa-web" class="w-full border p-2 rounded" placeholder="" />
         </div>
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Guardar cambios</button>
+        <button type="button" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onclick="saveChanges()">Guardar cambios</button>
       </form>
     </section>
 
-    <!-- Sección: Buscar influencers -->
     <section id="buscar" class="hidden bg-white p-6 rounded shadow">
       <h2 class="text-xl font-semibold mb-4">Buscar influencers</h2>
-
-      <!-- Lista de influencers (mock) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="border rounded p-4 shadow hover:shadow-lg transition">
-          <img src="https://via.placeholder.com/100" alt="Foto" class="rounded-full w-20 h-20 mb-2">
-          <h3 class="font-bold">Laura Martínez</h3>
-          <p class="text-sm text-gray-600">Categoría: Moda</p>
-          <p class="text-sm text-gray-600">Seguidores: 50k</p>
-          <a href="#" class="text-blue-600 text-sm" onclick="showProfile()">Ver perfil completo</a>
-        </div>
-
-        <div class="border rounded p-4 shadow hover:shadow-lg transition">
-          <img src="https://via.placeholder.com/100" alt="Foto" class="rounded-full w-20 h-20 mb-2">
-          <h3 class="font-bold">Laura Martínez</h3>
-          <p class="text-sm text-gray-600">Categoría: Moda</p>
-          <p class="text-sm text-gray-600">Seguidores: 50k</p>
-          <a href="#" class="text-blue-600 text-sm" onclick="showProfile()">Ver perfil completo</a>
-        </div>
-        <!-- Repetir esta tarjeta para más influencers -->
-      </div>
+      <div id="influencer-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
     </section>
 
-    <!-- Sección: Vista previa del perfil completo -->
     <section id="perfil-completo" class="hidden bg-white p-6 rounded shadow">
       <h2 class="text-xl font-semibold mb-4">Perfil completo del Influencer</h2>
       <div class="bg-white rounded shadow p-6">
-
-        <!-- Imagen y nombre -->
-        <div class="flex items-center space-x-4 mb-6">
-          <img src="https://via.placeholder.com/100" alt="Foto" class="rounded-full w-24 h-24">
-          <div>
-            <h2 class="text-2xl font-bold">Laura Martínez</h2>
-            <p class="text-sm text-gray-600">📍 Barcelona, España</p>
-          </div>
-        </div>
-
-        <!-- Categorías y seguidores -->
-        <div class="mb-4">
-          <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm mr-2">Moda</span>
-          <span class="inline-block bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm mr-2">Lifestyle</span>
-          <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Viajes</span>
-        </div>
-
-        <p class="mb-4 text-gray-700"><strong>Seguidores:</strong> 50,000</p>
-
-        <!-- Bio -->
-        <div class="mb-6">
-          <h3 class="text-lg font-semibold mb-1">Sobre mí</h3>
-          <p>Soy Laura, creadora de contenido especializada en moda, lifestyle y viajes. Me apasiona colaborar con marcas auténticas y conectar con una audiencia que valora la creatividad y la honestidad.</p>
-        </div>
-
-        <!-- Redes sociales -->
-        <div class="mb-6">
-          <h3 class="text-lg font-semibold mb-1">Redes sociales</h3>
-          <ul class="space-y-1">
-            <li><a href="https://instagram.com/lauramoda" target="_blank" class="text-blue-600 hover:underline">Instagram: @lauramoda</a></li>
-            <li><a href="https://tiktok.com/@lauramoda" target="_blank" class="text-pink-600 hover:underline">TikTok: @lauramoda</a></li>
-            <li><a href="https://youtube.com/lauramoda" target="_blank" class="text-red-600 hover:underline">YouTube: Laura Moda</a></li>
-          </ul>
-        </div>
-
-        <!-- Contacto -->
-        <div class="bg-gray-50 p-4 rounded">
-          <p class="text-sm">¿Te interesa colaborar con Laura?</p>
-          <p class="font-medium mt-1">📧 lauramartinez@correo.com</p>
-        </div>
+        <div id="influencer-profile"></div>
       </div>
     </section>
   </main>

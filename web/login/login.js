@@ -15,6 +15,8 @@ document.getElementById("login-btn").addEventListener("click", async function ()
 
         const result = await response.json();
         if (response.ok) {
+            localStorage.clear();
+            
             if (userType === "empresa") {
                 localStorage.setItem("userId", result.user.id_empresa);
                 localStorage.setItem("userType", "empresa");

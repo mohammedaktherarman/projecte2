@@ -86,15 +86,16 @@ def update_empresa(id, empresa):
     query = """
         UPDATE Empresa
         SET nom = %s, descripcio = %s, email_contacto = %s, web = %s,
-            ubicacio = %s, sector = %s
+            ubicacio = %s
         WHERE id_empresa = %s
     """
     cursor.execute(query, (
         empresa.nombre, empresa.descripcion, empresa.email_contacto,
-        empresa.web, empresa.ubicacion, empresa.sector, id
+        empresa.web, empresa.ubicacion, id
     ))
     conn.commit()
     conn.close()
+
 
 def delete_empresa(id):
     conn = db_client()
