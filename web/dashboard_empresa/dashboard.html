@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Dashboard Empresa</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="dashboard.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <title>Dashboard Empresa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="dashboard.css">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  </head>
+  
 <body class="bg-gray-100 text-gray-800">
 
   <header>
@@ -17,7 +20,7 @@
     <nav class="header-right">
       <a href="#" onclick="showSection('perfil')">Perfil</a>
       <a href="#" onclick="showSection('buscar')">Buscar influencers</a>
-      <a href="#" onclick="showSection('buscar')">Guardados</a>
+      <a href="#" onclick="showSection('guardados')">Guardados</a>
       <a href="#" style="color: red;">Cerrar sesión</a>
     </nav>
   </header>
@@ -50,9 +53,14 @@
       </form>
     </section>
 
-    <section id="buscar" class="hidden bg-white p-6 rounded shadow">
+    <section id="buscar" class="bg-white p-6 rounded shadow">
       <h2 class="text-xl font-semibold mb-4">Buscar influencers</h2>
       <div id="influencer-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+    </section>
+
+    <section id="guardados" class="hidden bg-white p-6 rounded shadow">
+      <h2 class="text-xl font-semibold mb-4">Guardados</h2>
+      <div id="saved-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
     </section>
 
     <section id="perfil-completo" class="hidden bg-white p-6 rounded shadow">
