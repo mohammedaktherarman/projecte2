@@ -16,8 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const mappedData = mapKeys(result.data);
         fillForm(mappedData);
         loadPreview(mappedData);
-      } else {
-        alert("No se encontraron datos del perfil.");
       }
     })
     .catch(error => {
@@ -118,11 +116,6 @@ document.addEventListener("DOMContentLoaded", function () {
       ubicacion: document.getElementById("ubicacion").value.trim(),
     };
 
-    if (!data.nombre || !data.email_contacto) {
-      alert("Por favor, completa los campos obligatorios.");
-      return;
-    }
-
     try {
       const response = await fetch(`http://localhost:8000${endpoint}`, {
         method: "PUT",
@@ -144,3 +137,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+function cerrarSesion() {
+  localStorage.clear();
+
+  window.location.href = "../login/login.html";
+}

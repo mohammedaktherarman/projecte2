@@ -21,7 +21,7 @@
       <a href="#" onclick="showSection('perfil')">Perfil</a>
       <a href="#" onclick="showSection('buscar')">Buscar influencers</a>
       <a href="#" onclick="showSection('guardados')">Guardados</a>
-      <a href="#" style="color: red;">Cerrar sesión</a>
+      <a href="#" onclick="cerrarSesion()" style="color: red;">Cerrar sesión</a>
     </nav>
   </header>
 
@@ -53,7 +53,7 @@
       </form>
     </section>
 
-    <section id="buscar" class="bg-white p-6 rounded shadow">
+    <section id="buscar" class="hidden bg-white p-6 rounded shadow">
       <h2 class="text-xl font-semibold mb-4">Buscar influencers</h2>
       <div id="influencer-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
     </section>
