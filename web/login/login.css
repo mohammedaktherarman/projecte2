@@ -45,7 +45,7 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-width: 500px; /* Cambiado a un tamaño más consistente entre los dos */
+    max-width: 500px;
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
@@ -55,6 +55,12 @@ h2 {
     width: 100%;
 }
 
+.form-group form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 label {
     font-size: 16px;
     font-weight: 600;
@@ -62,11 +68,17 @@ label {
     color: #555;
 }
 
-input[type="number"], input[type="text"], input[type="password"], input[type="email"] {
+input[type="number"],
+input[type="text"],
+input[type="password"],
+input[type="email"],
+.form-group select {
     padding: 12px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 button {
@@ -162,5 +174,48 @@ a {
 }
 
 .login-btn:active {
+    transform: scale(0.98);
+}
+
+/* Nos aseguramos que cada bloque de input sea una columna y esté alineado */
+.form-group form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+/* Inputs, selects y textareas bien adaptados */
+.form-group input[type="number"],
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 12px 24px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
     transform: scale(0.98);
 }

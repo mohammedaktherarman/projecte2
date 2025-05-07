@@ -1,7 +1,13 @@
-document.getElementById("login-btn").addEventListener("click", async function () {
+document.getElementById("login-form").addEventListener("submit", async function (event) {
+    event.preventDefault(); 
+
     const userType = document.getElementById("user-type").value;
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
+
+    if (!username || !password) {
+        return; 
+    }
 
     const endpoint = userType === "empresa" ? "/empresa/login" : "/influencer/login";
     const loginData = { email: username, password };
@@ -31,6 +37,6 @@ document.getElementById("login-btn").addEventListener("click", async function ()
         }
     } catch (error) {
         console.error("Error al conectar con el servidor:", error);
-        alert("Error al conectar con el servidor");
+        alert("Conexion a la API fallida");
     }
 });

@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     } catch (error) {
       console.error(error);
-      alert("Error de conexión con el servidor.");
+      alert("Conexion a la API fallida");
     }
   });
 });

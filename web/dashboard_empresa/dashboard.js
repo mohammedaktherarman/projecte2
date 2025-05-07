@@ -107,7 +107,7 @@ function saveInfluencer(id) {
   if (!savedList.includes(id)) {
     savedList.push(id);
     localStorage.setItem('savedInfluencers', JSON.stringify(savedList));
-    alert('Influencer guardado con éxito');
+    alert('Influencer guardado');
     loadSavedInfluencers(); 
   } else {
     alert('Este influencer ya está guardado');
