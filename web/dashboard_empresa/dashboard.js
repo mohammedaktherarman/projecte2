@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const endpoint = userType === "empresa" ? `/empresa/${userId}` : `/influencer/${userId}`;
 
-  fetch(`https://asix2og.cat/api/${endpoint}`)
+  fetch(`https://asix2og.cat/api${endpoint}`)
     .then(response => response.json())
     .then(result => {
       if (result && result.data) {
@@ -186,7 +186,7 @@ async function saveChanges() {
   const endpoint = userType === "empresa" ? `/empresa/${userId}` : `/influencer/${userId}`;
 
   try {
-    const response = await fetch(`https://asix2og.cat/api/${endpoint}`, {
+    const response = await fetch(`https://asix2og.cat/api${endpoint}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

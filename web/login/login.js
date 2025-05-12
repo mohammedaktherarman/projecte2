@@ -13,7 +13,7 @@ document.getElementById("login-form").addEventListener("submit", async function 
     const loginData = { email: username, password };
 
     try {
-        const response = await fetch(`https://asix2og.cat/api/${endpoint}`, {
+        const response = await fetch(`https://asix2og.cat/api${endpoint}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(loginData)
