@@ -9,7 +9,7 @@ document.getElementById("register-form").addEventListener("submit", async functi
     const userData = { email, password };
 
     try {
-        const response = await fetch(`https://asix2og.cat${endpoint}`, {
+        const response = await fetch(`https://asix2og.cat/api/${endpoint}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(userData)

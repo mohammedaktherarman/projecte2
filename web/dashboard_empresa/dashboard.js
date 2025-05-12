@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const endpoint = userType === "empresa" ? `/empresa/${userId}` : `/influencer/${userId}`;
 
-  fetch(`https://asix2og.cat${endpoint}`)
+  fetch(`https://asix2og.cat/api/${endpoint}`)
     .then(response => response.json())
     .then(result => {
       if (result && result.data) {
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function loadInfluencers() {
   try {
-    const response = await fetch('https://asix2og.cat/influencers/');
+    const response = await fetch('https://asix2og.cat/api/influencers/');
     const data = await response.json();
     if (data.status === 'ok') {
       const influencers = data.data;
@@ -69,7 +69,7 @@ async function loadInfluencers() {
 
 async function showProfile(id) {
   try {
-    const response = await fetch(`https://asix2og.cat/influencer/${id}`);
+    const response = await fetch(`https://asix2og.cat/api/influencer/${id}`);
     const data = await response.json();
     if (data.status === 'ok') {
       const influencer = data.data;
@@ -124,7 +124,7 @@ function loadSavedInfluencers() {
   }
 
   savedList.forEach(id => {
-    fetch(`https://asix2og.cat/influencer/${id}`)
+    fetch(`https://asix2og.cat/api/influencer/${id}`)
       .then(response => response.json())
       .then(data => {
         if (data.status === 'ok') {
@@ -186,7 +186,7 @@ async function saveChanges() {
   const endpoint = userType === "empresa" ? `/empresa/${userId}` : `/influencer/${userId}`;
 
   try {
-    const response = await fetch(`https://asix2og.cat${endpoint}`, {
+    const response = await fetch(`https://asix2og.cat/api/${endpoint}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
