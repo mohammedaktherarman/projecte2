@@ -17,12 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const endpoint = userType === "empresa" ? `/empresa/${userId}` : `/influencer/${userId}`;
 
-  fetch(`https://asix2og.cat${endpoint}`)
+  fetch(`/api${endpoint}`)
     .then(response => response.json())
     .then(result => {
       if (result && result.data) {
         const data = result.data;
-        
         document.getElementById("empresa-nombre").value = data.nom || "";
         document.getElementById("empresa-descripcion").value = data.descripcio || "";
         document.getElementById("empresa-email").value = data.email_contacto || "";
@@ -40,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function loadInfluencers() {
   try {
-    const response = await fetch('https://asix2og.cat/influencers/');
+    const response = await fetch('/api/influencers/');
     const data = await response.json();
     if (data.status === 'ok') {
       const influencers = data.data;
@@ -69,7 +68,7 @@ async function loadInfluencers() {
 
 async function showProfile(id) {
   try {
-    const response = await fetch(`https://asix2og.cat/influencer/${id}`);
+    const response = await fetch(`/api/influencer/${id}`);
     const data = await response.json();
     if (data.status === 'ok') {
       const influencer = data.data;
@@ -124,7 +123,7 @@ function loadSavedInfluencers() {
   }
 
   savedList.forEach(id => {
-    fetch(`https://asix2og.cat/influencer/${id}`)
+    fetch(`/api/influencer/${id}`)
       .then(response => response.json())
       .then(data => {
         if (data.status === 'ok') {
@@ -149,7 +148,6 @@ function loadSavedInfluencers() {
 
 function cerrarSesion() {
   localStorage.clear();
-
   window.location.href = "../login/login.html";
 }
 
@@ -174,7 +172,7 @@ async function saveChanges() {
   const web = document.getElementById("empresa-web").value;
 
   const datos = {
-    nombre: nombre || undefined, 
+    nombre: nombre || undefined,
     descripcion: descripcion || undefined,
     email_contacto: email || undefined,
     ubicacion: ubicacion || undefined,
@@ -182,11 +180,10 @@ async function saveChanges() {
   };
 
   const datosFiltrados = Object.fromEntries(Object.entries(datos).filter(([_, v]) => v !== undefined));
-
   const endpoint = userType === "empresa" ? `/empresa/${userId}` : `/influencer/${userId}`;
 
   try {
-    const response = await fetch(`https://asix2og.cat${endpoint}`, {
+    const response = await fetch(`/api${endpoint}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -199,7 +196,7 @@ async function saveChanges() {
     if (resultado.status === 'ok') {
       alert("Perfil actualizado.");
     } else {
-      alert("Error" + resultado.message);
+      alert("Error: " + (resultado.message || 'No se pudo actualizar.'));
     }
   } catch (error) {
     console.error("Error al actualizar los datos:", error);

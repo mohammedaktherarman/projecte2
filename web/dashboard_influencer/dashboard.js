@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const endpoint = userType === "empresa" ? `/empresa/${userId}` : `/influencer/${userId}`;
 
-  fetch(`https://asix2og.cat${endpoint}`)
+  fetch(`/api${endpoint}`)
     .then(response => response.json())
     .then(result => {
       if (result && result.data) {
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("editar").classList.add("hidden");
     document.getElementById("preview").classList.remove("hidden");
 
-    fetch(`https://asix2og.cat${endpoint}`)
+    fetch(`/api${endpoint}`)
       .then(response => response.json())
       .then(result => {
         if (result && result.data) {
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     try {
-      const response = await fetch(`https://asix2og.cat${endpoint}`, {
+      const response = await fetch(`/api${endpoint}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -126,20 +126,19 @@ document.addEventListener("DOMContentLoaded", function () {
       const result = await response.json();
 
       if (response.ok) {
-        alert("Perfil actualizado correctamente. Mira como queda en Vista previa");
+        alert("Perfil actualizado correctamente. Mira cómo queda en Vista previa");
         loadPreview(data);
       } else {
         alert(result.detail || "Error al actualizar el perfil.");
       }
     } catch (error) {
       console.error(error);
-      alert("Conexion a la API fallida");
+      alert("Conexión a la API fallida");
     }
   });
 });
 
 function cerrarSesion() {
   localStorage.clear();
-
   window.location.href = "../login/login.html";
 }

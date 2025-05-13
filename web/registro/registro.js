@@ -9,7 +9,7 @@ document.getElementById("register-form").addEventListener("submit", async functi
     const userData = { email, password };
 
     try {
-        const response = await fetch(`https://asix2og.cat${endpoint}`, {
+        const response = await fetch(`/api${endpoint}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(userData)
@@ -24,6 +24,6 @@ document.getElementById("register-form").addEventListener("submit", async functi
         }
     } catch (error) {
         console.error("Error al conectar con el servidor:", error);
-        alert("Conexion a la API fallida");
+        alert("Conexión a la API fallida");
     }
 });

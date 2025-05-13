@@ -32,7 +32,7 @@ class Empresa(BaseModel):
     web: Optional[str] = None
     ubicacion: Optional[str] = None
 
-app = FastAPI()
+app = FastAPI(root_path="/api")
 
 app.add_middleware(
     CORSMiddleware,
