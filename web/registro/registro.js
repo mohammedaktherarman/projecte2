@@ -26,4 +26,4 @@ document.getElementById("register-form").addEventListener("submit", async functi
         console.error("Error al conectar con el servidor:", error);
         alert("Conexión a la API fallida");
     }
-});z
+});
