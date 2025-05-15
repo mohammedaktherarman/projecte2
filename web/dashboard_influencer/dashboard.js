@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const endpoint = userType === "empresa" ? `/empresa/${userId}` : `/influencer/${userId}`;
 
-  fetch(`https://asix2og.cat${endpoint}`)
+  fetch(`http://54.236.163.28${endpoint}`)
     .then(response => response.json())
     .then(result => {
       if (result && result.data) {
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("editar").classList.add("hidden");
     document.getElementById("preview").classList.remove("hidden");
 
-    fetch(`https://asix2og.cat${endpoint}`)
+    fetch(`http://54.236.163.28${endpoint}`)
       .then(response => response.json())
       .then(result => {
         if (result && result.data) {
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     try {
-      const response = await fetch(`https://asix2og.cat${endpoint}`, {
+      const response = await fetch(`http://54.236.163.28${endpoint}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
