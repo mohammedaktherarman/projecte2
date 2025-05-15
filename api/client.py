@@ -1,4 +1,5 @@
 import mysql.connector
+from mysql.connector import Error
 
 def db_client():
     try:
@@ -6,18 +7,18 @@ def db_client():
         user = "root"
         password = "pirineus"  
         host = "localhost"
-        port = "3306"
-        collation = "utf8mb4_general_ci"
-        
-        return mysql.connector.connect(
+        port = 3306
+
+        conn = mysql.connector.connect(
             host=host,
             port=port,
             user=user,
             password=password,
-            database=dbname,
-            collation=collation
+            database=dbname
         )
-    
-    except Exception as e:
-        print(f"Error de conexión: {e}")
+
+        return conn if conn.is_connected() else None
+
+    except Error as e:
+        print(f"❌ Error de conexión: {e}")
         return None
