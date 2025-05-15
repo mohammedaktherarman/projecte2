@@ -32,11 +32,11 @@ class Empresa(BaseModel):
     web: Optional[str] = None
     ubicacion: Optional[str] = None
 
-app = FastAPI(root_path="/api")
+app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://asix2og.cat"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
