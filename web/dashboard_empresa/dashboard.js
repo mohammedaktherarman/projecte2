@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const endpoint = userType === "empresa" ? `/empresa/${userId}` : `/influencer/${userId}`;
 
-  fetch(`/api${endpoint}`)
+  fetch(`http://54.236.163.28${endpoint}`)
     .then(response => response.json())
     .then(result => {
       if (result && result.data) {
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function loadInfluencers() {
   try {
-    const response = await fetch('/api/influencers/');
+    const response = await fetch('http://54.236.163.28/influencers/');
     const data = await response.json();
     if (data.status === 'ok') {
       const influencers = data.data;
@@ -68,7 +68,7 @@ async function loadInfluencers() {
 
 async function showProfile(id) {
   try {
-    const response = await fetch(`/api/influencer/${id}`);
+    const response = await fetch(`http://54.236.163.28/influencer/${id}`);
     const data = await response.json();
     if (data.status === 'ok') {
       const influencer = data.data;
@@ -123,7 +123,7 @@ function loadSavedInfluencers() {
   }
 
   savedList.forEach(id => {
-    fetch(`/api/influencer/${id}`)
+    fetch(`http://54.236.163.28/influencer/${id}`)
       .then(response => response.json())
       .then(data => {
         if (data.status === 'ok') {
@@ -183,7 +183,7 @@ async function saveChanges() {
   const endpoint = userType === "empresa" ? `/empresa/${userId}` : `/influencer/${userId}`;
 
   try {
-    const response = await fetch(`/api${endpoint}`, {
+    const response = await fetch(`http://54.236.163.28${endpoint}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
