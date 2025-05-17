@@ -2,8 +2,8 @@ import mysql.connector
 
 def db_client():
     dbname = "fluence"
-    user = "root"
-    password = "pirineus"
+    user = "user"
+    password = "arman001"
     host = "localhost"
     port = 3306
 

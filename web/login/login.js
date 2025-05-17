@@ -13,7 +13,7 @@ document.getElementById("login-form").addEventListener("submit", async function 
     const loginData = { email: username, password };
 
     try {
-        const response = await fetch(`http://54.236.163.28:8000${endpoint}`, {
+        const response = await fetch(`http://3.214.1.49:8000${endpoint}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(loginData)
